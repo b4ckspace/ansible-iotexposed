@@ -1,0 +1,21 @@
+---
+
+- name: install dependencies
+  apt: 
+    pkg:
+    - docker-ce
+    - bash
+    - jq
+    - curl
+    - avahi-daemon
+    - dbus
+    - apparmor-utils
+
+- name: get install hassio script
+  get_url:
+    url: https://raw.githubusercontent.com/home-assistant/hassio-installer/master/hassio_install.sh
+    dest: /tmp/hassio_install.sh
+    mode: +x
+
+- name: install hassio
+  command: bash /tmp/hassio_install.sh
