@@ -1,0 +1,14 @@
+---
+
+- name: install sudo
+  apt:
+    name: sudo
+    update_cache: yes
+
+- name: "Allow admin users to sudo without a password"
+  lineinfile:
+    dest: "/etc/sudoers" # path: in version 2.3
+    state: "present"
+    regexp: "^%sudo"
+    line: "%sudo ALL=(ALL) NOPASSWD: ALL"
+

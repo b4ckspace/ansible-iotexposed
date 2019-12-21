@@ -1,0 +1,34 @@
+---
+
+- name: Create directory if it does not exist
+  file:
+    path: "{{ item }}"
+    state: directory
+    owner: root
+    group: root
+    mode: 0775
+  with_items:
+    - /opt/docker/
+    - /opt/docker/mounts/
+    - /opt/docker/config/
+    - /opt/docker/config/traefik
+
+- name: copy config files
+  copy:
+    src: "{{ item }}"
+    dest: /opt/docker/config/traefik
+    owner: root
+    mode: 600
+  with_fileglob:
+    - ../files/*
+
+- name: touch acme.json
+  command: "touch /opt/docker/config/traefik/acme.json && chmod 600 /opt/docker/config/traefik/acme.json"
+
+- name: ensure network traefik exists
+  command: "docker network create traefik"
+
+- name: run docker-compose
+  command: "docker-compose up -d"
+  args:
+    chdir: /opt/docker/config/traefik

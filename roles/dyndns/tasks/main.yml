@@ -1,0 +1,6 @@
+---
+
+- name: ensure cronjob for dyndns exists
+  cron:
+    name: "ddns"
+    job: "curl 'https://ddns.iot.exposed/update/{{ ddns_record }}/{{ ddns_token }}'"

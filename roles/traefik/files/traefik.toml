@@ -1,0 +1,18 @@
+[providers.docker]
+  exposedByDefault = false
+  network = "traefik"
+
+## Static configuration
+[entryPoints]
+  [entryPoints.web]
+    address = ":80"
+
+  [entryPoints.websecure]
+    address = ":443"
+
+[certificatesResolvers.le.acme]
+  email = "raphael@pertl.tech"
+  storage = "acme.json"
+  [certificatesResolvers.le.acme.httpChallenge]
+    # used during the challenge
+    entryPoint = "web"

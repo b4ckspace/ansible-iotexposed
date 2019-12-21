@@ -1,0 +1,16 @@
+---
+
+- hosts: default
+  roles:
+    - role: users
+      tags: users
+    - role: installsudo
+      tags: installsudo
+    - role: sshd
+      tags: sshd
+    - role: docker
+      tags: docker
+    - role: traefik
+      tags: traefik
+    - role: dyndns
+      tags: dyndns

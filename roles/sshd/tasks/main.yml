@@ -1,0 +1,14 @@
+---
+
+- name: change sshd_config to disable rootlogin and change port to {{ ssh_port }}
+  template:
+    src: sshd_config.j2
+    dest: /etc/ssh/sshd_config
+    backup: yes
+    owner: root
+    group: root
+    mode: 0600
+    validate: '/usr/sbin/sshd -T -f %s'
+  notify:
+    - restart_sshd
+
