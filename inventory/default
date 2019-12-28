@@ -2,15 +2,16 @@
 
 default:
   hosts:
-    10.1.20.216:
+    beavis.iot.exposed:
       ddns_record: beavis
       ddns_token: 4d69b6ff1a0c3358076d496cb70d00e84b38ea75
-    10.1.20.233:
+    butthead.iot.exposed:
       ddns_record: butthead
       ddns_token: c25ba372649d9bfa204a672e9f3da5cfa3fdf1dc
   vars:
     users:
       raphael:
+      stefan:
     ssh_port: 22
     ansible_port: 22
     dockercomposeversion: "1.25.0"
